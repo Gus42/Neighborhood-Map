@@ -1,11 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 }
 
 #side-bar {
 	width: 20%;
+	height: 100%;
+	border: 1px solid grey;
+}
+
+.filter-path {
+	background-color: #d99;
+	height: 40px;
+	text-align: center;
+	line-height: 40px;
 }
 
 #map {
 	width: 80%;
+	height: 100%;
 }
