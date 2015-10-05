@@ -6,10 +6,15 @@ body {
 	margin: 0;
 }
 
+._clear {
+	clear: both;
+}
+
 #side-bar {
 	width: 20%;
 	height: 100%;
 	border: 1px solid grey;
+	float: left;
 }
 
 .filter-path {
@@ -22,4 +27,5 @@ body {
 #map {
 	width: 80%;
 	height: 100%;
+	float: right;
 }
