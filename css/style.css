@@ -10,6 +10,7 @@ ul,
 li {
 	list-style: none;
 	padding: 0;
+	margin: 0;
 }
 
 ._clear {
@@ -20,29 +21,37 @@ li {
 	min-width: 230px;
 	width: 20%;
 	height: 100%;
-	border: 1px solid grey;
+	border-right: 1px solid grey;
 	float: left;
+	background-color: #d9f7f7;
 }
 
 .filter-path {
-	background-color: #007cbc;
+	background-color: #abf9ff;
 	height: 40px;
 	text-align: center;
-	line-height: 40px;
+	padding: 10px 30px;
+}
+
+.filter {
+	width: 100%;
 }
 
 .place {
 	height: 40px;
 	line-height: 40px;
-	background-color: #32B9FF;
+	padding: 0 30px;
 }
 
 .place:hover {
-	background-color: #007cbc;
+	background-color: #abf9ff;
+	cursor: pointer;
+	font-weight: bold;
 }
 
 #map {
 	width: 80%;
+	min-width: 300px;
 	height: 100%;
 	float: right;
 }
