@@ -1,0 +1,11 @@
+body {
+	margin: 0;
+}
+
+#side-bar {
+	width: 20%;
+}
+
+#map {
+	width: 80%;
+}
