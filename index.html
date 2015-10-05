@@ -10,7 +10,9 @@
 			<input class="filter" type="text" value="Write here to filter">
 			<button class="filter-btn">filter</button>
 		</div>
-		<ul class="place-list"></ul>
+		<ul class="place-list" data-bind="foreach: parkList">
+			<li class="place" data-bind="text: name"></li>
+		</ul>
 	</aside>
 	<div id="map"></div>
 	<div clear="_clear"></div>

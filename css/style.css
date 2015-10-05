@@ -6,11 +6,18 @@ body {
 	margin: 0;
 }
 
+ul,
+li {
+	list-style: none;
+	padding: 0;
+}
+
 ._clear {
 	clear: both;
 }
 
 #side-bar {
+	min-width: 230px;
 	width: 20%;
 	height: 100%;
 	border: 1px solid grey;
@@ -18,10 +25,20 @@ body {
 }
 
 .filter-path {
-	background-color: #d99;
+	background-color: #007cbc;
 	height: 40px;
 	text-align: center;
 	line-height: 40px;
+}
+
+.place {
+	height: 40px;
+	line-height: 40px;
+	background-color: #32B9FF;
+}
+
+.place:hover {
+	background-color: #007cbc;
 }
 
 #map {
