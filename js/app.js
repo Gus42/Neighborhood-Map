@@ -17,7 +17,7 @@ var ViewModel = function() {
 	}*/
 }
 ko.applyBindings(new ViewModel());
-/*
+
 var view = {
 	init: function() {
 		var mapCanvas = document.getElementById('map');
@@ -32,11 +32,12 @@ var view = {
 
 	}
 }
-
+view.init();
+/*
 var control = {
 	init: function() {
 		model.init();
-		view.init();
+
 	},
 	update: function() {
 
