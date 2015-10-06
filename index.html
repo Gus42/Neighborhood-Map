@@ -7,9 +7,9 @@
 <body>
 	<aside id="side-bar">
 		<div class="filter-path">
-			<input class="filter" type="text" placeholder="Write here to filter" data-bind="value: filter">
+			<input class="filter" type="text" placeholder="Write here to filter" data-bind="textInput: filter">
 		</div>
-		<ul class="place-list" data-bind="foreach: parkList, visible: show()">
+		<ul class="place-list" data-bind="foreach: parkVisible">
 			<li class="place" data-bind="text: name"></li>
 		</ul>
 	</aside>
