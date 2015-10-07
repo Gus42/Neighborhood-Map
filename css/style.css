@@ -6,6 +6,11 @@ body {
 	margin: 0;
 }
 
+a {
+	text-decoration: none;
+	color: black;
+}
+
 ul,
 li {
 	list-style: none;
@@ -58,4 +63,9 @@ li {
 
 .coord {
 	font-size: 10px;
+}
+
+.restaurants {
+	padding-top: 10px;
+	color: blue;
 }

@@ -1,8 +1,3 @@
-function log(x) {
-	console.log(x);
-}
-
-
 // parkList is the array containing all the parks
 var parkList = [
 		{"name": "Lenton Abbey Park", "location": "Derby Road, Lenton, Nottingham NG9 2SD", "lat": "52.9388484", "lng": "-1.2145866"},
@@ -17,6 +12,7 @@ var parkList = [
 
 // Initializes the Google Map centred to Nottingham.
 // Extend each park in parkList with his own marker.
+// Add an event listener to each marker.
 var map;
 var coord = [];
 var infowindow = new google.maps.InfoWindow({});
@@ -40,31 +36,52 @@ function initializeMap() {
 			map: map,
 			title: parkList[i].name
 		});
-		content = createContent(parkList[i]);
-		parkList[i].marker.addListener('click', (function(marker, string) {
+		parkList[i].marker.addListener('click', (function(park) {
 			return function() {
-				openInfo(marker, string);
+				openInfo(park);
 			};
-		})(parkList[i].marker, content));
+		})(parkList[i]));
 	}
-}
-
-function createContent(park) {
-	var img = "http";
-	var content = "<h3>"+park.name +"</h3>" +
-		"<div>"+park.location+"</div>" +
-		"<div class='coord'>Latitude: "+park.lat+"</div>" +
-		"<div class='coord'>Longitude: "+park.lng+"</div>";
-	return content;
-}
-
-function openInfo(marker, cont) {
-	infowindow.setContent(cont);
-	infowindow.open(map, marker);
 }
 
 initializeMap();
 
+// createContent will return a string containing content about the selected park
+function createContent(park) {
+	var content = "<h3>" + park.name + "</h3>" +
+		"<div>"+park.location+"</div>" +
+		"<div class='coord'>Latitude: " + park.lat + "</div>" +
+		"<div class='coord'>Longitude: " + park.lng + "</div>" +
+		"<div class='restaurants'>Nearby restaurants (distance < 1km)</div>";
+	return content;
+}
+
+// openInfo is called when user click on the list or on a marker.
+// It makes an ajax call to foursquare to have some information about restaurants near the selected park
+// .setContent and .open are called inside ajax to be sure that there is a content when infowindws is opened.
+function openInfo(park) {
+	park.marker.setAnimation(google.maps.Animation.BOUNCE);
+	setTimeout(function(){ park.marker.setAnimation(null); }, 700);
+	var url = "https://api.foursquare.com/v2/venues/search?client_id=DSSY0XT4J1GLJ1USG0PWXLWBHG0COADELQ5NJUMQSLDOOCQY&client_secret=RW123CNTQ2IOOOB1GGXS4BUABFPHLQTP5ME5H5NTEGC10WGP&v=20130815"+
+		"&ll="+park.lat+","+park.lng+
+		"&query=restaurant"+
+		"&limit=3"+
+		"&radius=1000";
+	var html = "";
+	$.getJSON(url, function (data) {
+        for (var i=0; i < data.response.venues.length; i++) {
+        	html += "<div><a href='https://it.foursquare.com/v/"+data.response.venues[i].id+"'>"+data.response.venues[i].name+"</a></div>"
+        }
+        if(html == "") html = "There are no restaurants near the park"
+        infowindow.setContent(createContent(park) + html);
+		infowindow.open(map, park.marker);
+    }).error(function(e){
+        console.log("Problem with foursquare: " + e);
+        html = "<div>We're sorry, loading restaurants is failed</div>";
+        infowindow.setContent(createContent(park) + html);
+		infowindow.open(map, park.marker);
+    });
+}
 
 // The ViewModel
 var ViewModel = function() {
@@ -88,8 +105,10 @@ var ViewModel = function() {
 		return storePark;
 	});
 
+	// select function is activeted when user click on a place.
+	// the event is adde in html using ko
 	self.select = function(parent) {
-		openInfo(parent.marker, createContent(parent));
+		openInfo(parent);
 	}
 };
 
