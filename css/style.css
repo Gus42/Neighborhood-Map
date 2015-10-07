@@ -69,7 +69,11 @@ li {
 }
 
 @media screen and (max-width: 680px) {
-	#contenitor {
+	.place {
+		font-size: 14px;
+	}
+
+	.contenitor {
 		height: 100%;
 		width: 250px;
 		left: -250px;
@@ -80,7 +84,7 @@ li {
 		transition-property: transform;
 	}
 
-	#contenitor:before {
+	.contenitor:before {
 		content: "O";
 		line-height: 30px;
 		text-align: center;
@@ -94,11 +98,11 @@ li {
 		border-radius: 0 6px 6px 0;
 	}
 
-	#contenitor:focus {
+	.contenitor:focus {
 		transform: translateX(100%);
 	}
 
-	#contenitor:focus:before {
+	.contenitor:focus:before {
 		display: none;
 	}
 
@@ -107,13 +111,8 @@ li {
 		z-index: 10;
 		left: 0;
 		top: 0;
-		transition-duration: 0s;
-		transition-property: transform;
-
-
 		transition-duration: 0s, 4s;
 		transition-property: opacity, transform;
-
 	}
 
 	#side-bar:before {
@@ -129,6 +128,7 @@ li {
 		background-color: #d9f7f7;
 		border-radius: 0 6px 6px 0;
 	}
+
 	#side-bar:focus {
 		transform: opacity(0),translateX(-100%);
 	}
@@ -137,30 +137,6 @@ li {
 		display: none;
 	}
 
-/*
-
-	#side-bar:before {
-		content: "O";
-		line-height: 30px;
-		text-align: center;
-		z-index: 10;
-		position: absolute;
-		right: -30px;
-		top: 100;
-		width: 30px;
-		height: 30px;
-		background-color: #abf9ff;
-		border-radius: 0 6px 6px 0;
-	}
-
-	#side-bar:focus {
-		transform: translateX(100%);
-	}
-
-	#side-bar:focus:before {
-		display: none;
-	}
-*/
 	#map {
 		width: 100%;
 	}
