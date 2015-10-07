@@ -55,3 +55,7 @@ li {
 	height: 100%;
 	float: right;
 }
+
+.coord {
+	font-size: 10px;
+}

@@ -19,6 +19,7 @@ var parkList = [
 // Extend each park in parkList with his own marker.
 var map;
 var coord = [];
+var infowindow = new google.maps.InfoWindow({});
 function initializeMap() {
 
 	var mapCanvas = document.getElementById('map');
@@ -30,18 +31,39 @@ function initializeMap() {
 	map = new google.maps.Map(mapCanvas, mapOptions);
 
 	var coord;
+	var content;
 	for (var i = 0; i < parkList.length; i++){
 		coord = new google.maps.LatLng(parkList[i].lat, parkList[i].lng);
 		parkList[i].marker = new google.maps.Marker({
 			position: coord,
+			icon: 'http://maps.google.com/mapfiles/kml/pal2/icon12.png',
 			map: map,
 			title: parkList[i].name
 		});
+		content = createContent(parkList[i]);
+		parkList[i].marker.addListener('click', (function(marker, string) {
+			return function() {
+				openInfo(marker, string);
+			};
+		})(parkList[i].marker, content));
 	}
 }
 
-initializeMap();
+function createContent(park) {
+	var img = x;
+	var content = "<h3>"+park.name +"</h3>" +
+		"<div>"+park.location+"</div>" +
+		"<div class='coord'>Latitude: "+park.lat+"</div>" +
+		"<div class='coord'>Longitude: "+park.lng+"</div>";
+	return content;
+}
 
+function openInfo(marker, cont) {
+	infowindow.setContent(cont);
+	infowindow.open(map, marker);
+}
+
+initializeMap();
 
 
 // The ViewModel
@@ -53,7 +75,7 @@ var ViewModel = function() {
 	// Every time filter's value change, parkVisible is update.
 	var storePark;
 	self.filter = ko.observable("");
-	self.parkVisible = ko.computed( function(){
+	self.parkVisible = ko.computed( function() {
 		storePark = [];
 		parkList.forEach(function(park) {
 			if (park.name.toLowerCase().indexOf(self.filter().toLowerCase()) > -1) {
@@ -65,6 +87,10 @@ var ViewModel = function() {
 		});
 		return storePark;
 	});
-}
+
+	self.select = function(parent) {
+		openInfo(parent.marker, createContent(parent));
+	}
+};
 
 ko.applyBindings(new ViewModel());

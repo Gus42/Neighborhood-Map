@@ -10,7 +10,7 @@
 			<input class="filter" type="text" placeholder="Write here to filter" data-bind="textInput: filter">
 		</div>
 		<ul class="place-list" data-bind="foreach: parkVisible">
-			<li class="place" data-bind="text: name"></li>
+			<li class="place" data-bind="text: name, click: $parent.select"></li>
 		</ul>
 	</aside>
 	<div id="map"></div>
