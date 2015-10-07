@@ -50,7 +50,7 @@ function initializeMap() {
 }
 
 function createContent(park) {
-	var img = x;
+	var img = "http";
 	var content = "<h3>"+park.name +"</h3>" +
 		"<div>"+park.location+"</div>" +
 		"<div class='coord'>Latitude: "+park.lat+"</div>" +
