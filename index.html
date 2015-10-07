@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<aside id="side-bar">
+	<aside id="side-bar" tabindex="1">
 		<div class="filter-path">
 			<input class="filter" type="text" placeholder="Write here to filter" data-bind="textInput: filter">
 		</div>
@@ -15,7 +15,6 @@
 		</ul>
 	</aside>
 	<div id="map"></div>
-	<div clear="_clear"></div>
 	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 	<script src="lib/knockout-3.3.0.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
