@@ -20,10 +20,6 @@ li {
 	margin: 0;
 }
 
-._clear {
-	clear: both;
-}
-
 #side-bar {
 	border-right: 1px solid grey;
 	background-color: #d9f7f7;
