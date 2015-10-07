@@ -107,8 +107,13 @@ li {
 		z-index: 10;
 		left: 0;
 		top: 0;
-		transition-duration: 1s;
+		transition-duration: 0s;
 		transition-property: transform;
+
+
+		transition-duration: 0s, 4s;
+		transition-property: opacity, transform;
+
 	}
 
 	#side-bar:before {
@@ -125,7 +130,7 @@ li {
 		border-radius: 0 6px 6px 0;
 	}
 	#side-bar:focus {
-		transform: translateX(-100%);
+		transform: opacity(0),translateX(-100%);
 	}
 
 	#side-bar:focus:before {
